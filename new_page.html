@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粉红色渐变网页</title>
+<style>
+  body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* 禁止竖向滚动条 */
+  }
+
+  .footer-item {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none; /* 移除下划线 */
+  }
+
+  .top-bar {
+    background: linear-gradient(to right, #ff85a1, #ffbbca);
+    color: white;
+    text-align: center;
+    padding: 20px 0; /* 调整顶部粉色条的上下 padding */
+    display: flex;
+    justify-content: flex-start; /* 让元素靠左对齐 */
+    align-items: center; /* 垂直居中对齐 */
+  }
+
+  /* 调整返回链接样式 */
+  .top-bar a {
+    margin-left: 20px; /* 调整左边距 */
+    text-decoration: none;
+    color: white;
+    flex: 0; /* 不伸缩 */
+    white-space: nowrap; /* 避免换行 */
+  }
+
+  /* 调整"首页"字体在粉色条中的位置 */
+  .top-bar span {
+    flex: 1; /* 伸缩 */
+    font-size: 15px; /* 增加字体大小 */
+  }
+
+  .carousel {
+    width: 100vw; /* 横屏幕充满 */
+    height: 250px; /* 调整容器高度 */
+    position: relative;
+    top: 0px; /* 保持原位 */
+    white-space: nowrap; /* 横向不换行 */
+    overflow: hidden;
+  }
+
+  .carousel img {
+    width: 100vw;
+    height: 250px; /* 图片高度等于容器高度 */
+    border-radius: 20px; /* 圆角修饰 */
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    opacity: 0; /* 初始隐藏图片 */
+    transition: opacity 1s; /* 设置过渡效果 */
+  }
+
+  .carousel img.active {
+    opacity: 1; /* 显示活动图片 */
+  }
+
+  .footer {
+    background: linear-gradient(to right, #ff85a1, #ffbbca);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .footer-item {
+    margin: 0 10px;
+    color: white;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* 设置底部"首页"颜色为深粉色 */
+  .footer-item:first-child {
+    color: #c9445e; /* 深粉色 */
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="index.html">返回</a>
+    <span onclick="showContent()">首页</span>
+  </div>
+  
+  <div class="content">
+    <!-- 内容部分 -->
+  </div>
+
+  <div class="carousel">
+    <img src="image1.jpg" alt="Image 1" class="active"> <!-- 设置第一张图片为活动状态 -->
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+    <img src="image4.jpg" alt="Image 4">
+    <img src="image5.jpg" alt="Image 5">
+    <img src="image6.jpg" alt="Image 6">
+  </div>
+
+  <p style="text-align: center;" class="text">嗨，我是小白，一个可爱活泼的小白狗！自从学会了自拍，我总是乐此不疲地和大家分享我的生活点滴。跟着我，一起探索这个五彩斑斓的世界吧！</p>
+
+  <div class="footer">
+    <div class="footer-item" onclick="showContent()">首页</div>
+    <a href="friend.html" class="footer-item">好友</a>
+    <a href="HappyBirthday.html" class="footer-item">更多</a>
+</div>
+
+  <audio id="music" src="background_music.mp3" autoplay loop></audio>
+
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    let currentIndex = 0;
+
+    function slideToNextImage() {
+      images[currentIndex].classList.remove('active');
+      currentIndex++;
+      if (currentIndex === images.length) {
+        currentIndex = 0;
+      }
+      images[currentIndex].style.opacity = 1;
+
+      let prevIndex = currentIndex - 1;
+      if (prevIndex < 0) {
+        prevIndex = images.length - 1;
+      }
+      images[prevIndex].style.opacity = 0;
+    }
+
+    setInterval(slideToNextImage, 2000);
+
+    function showContent() {
+      const carousel = document.querySelector('.carousel');
+      carousel.classList.remove('hidden');
+
+      const text = document.querySelector('.text');
+      text.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

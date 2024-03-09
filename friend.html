@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粉红色渐变网页</title>
+<style>
+  body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* 禁止竖向滚动条 */
+  }
+
+  .footer-item {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none; /* 移除下划线 */
+    cursor: pointer; /* 添加指针样式 */
+  }
+
+  .top-bar {
+    background: linear-gradient(to right, #ff85a1, #ffbbca);
+    color: white;
+    text-align: center;
+    padding: 20px 0; /* 调整顶部粉色条的上下 padding */
+    display: flex;
+    justify-content: flex-start; /* 让元素靠左对齐 */
+    align-items: center; /* 垂直居中对齐 */
+  }
+
+  /* 调整返回链接样式 */
+  .top-bar a {
+    margin-left: 20px; /* 调整左边距 */
+    text-decoration: none;
+    color: white;
+    flex: 0; /* 不伸缩 */
+    white-space: nowrap; /* 避免换行 */
+  }
+
+  /* 调整"首页"字体在粉色条中的位置 */
+  .top-bar span {
+    flex: 1; /* 伸缩 */
+    font-size: 15px; /* 增加字体大小 */
+  }
+
+  .footer {
+    background: linear-gradient(to right, #ff85a1, #ffbbca);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .footer-item {
+    margin: 0 10px;
+    color: white;
+  }
+
+  .footer-item.friend {
+    color: #ff007f; /*设置深粉色*/
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin-top: 20px;
+  }
+
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: #ff85a1;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 100px;
+    margin: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .box {
+      width: 30vw; /* 设置宽度为屏幕宽度的30% */
+      height: 30vw; /* 设置高度为宽度的比例，使其呈现方形 */
+      font-size: 4vw; /* 设置字体大小为宽度的比例，以保持比例 */
+      line-height: 30vw; /* 设置行高为高度，使内容居中 */
+      margin: 5px; /* 调整间距 */
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="index.html">返回</a>
+    <span onclick="window.location.href='new_page.html'">好友</span>
+  </div>
+
+  <div class="container">
+    <div class="box">瑶瑶公主</div>
+    <div class="box">欣欣公主</div>
+    <div class="box">涵涵公主</div>
+    <div class="box">敏敏公主</div>
+    <div class="box">君君公主</div>
+    <div class="box">敏敏公主</div>
+    <div class="box">雯雯公主</div>
+  </div>
+  <p style="text-align: center; font-size: 18px; margin-top: 20px;">不知道写什么，随便放点~</p>
+  <a href="https://www.icourse163.org/" target="_blank">点击跳转到iCourse网站</a>
+  <a href="https://www.douyin.com/" target="_blank">点击跳转到Douyin网站</a>
+  <p style="text-align: center; font-size: 18px; margin-top: 20px;">有什么好的提议请说~</p>
+  <textarea id="proposal" rows="4" cols="50" placeholder="请输入您的提议"></textarea><br>
+<button onclick="saveProposal()">发送</button>
+
+
+  <div class="footer">
+    <div class="footer-item" onclick="window.location.href='new_page.html'">首页</div>
+    <a href="HappyBirthday.html" class="footer-item friend">好友</a>
+    <div class="footer-item" onclick="window.location.href='HappyBirthday.html'">更多</div>
+  </div>
+
+  <audio id="music" src="background_music.mp3" autoplay loop></audio>
+
+  <script>
+    function showContent() {
+      const carousel = document.querySelector('.carousel');
+      carousel.classList.remove('hidden');
+      
+      const text = document.querySelector('.text');
+      text.classList.remove('hidden');
+    }
+
+    function saveProposal() {
+    const proposal = document.getElementById('proposal').value;
+    const lineBreak = "\r\n"; // 换行符
+
+    // 将提议写入1.txt文件
+    const fs = require('fs');
+    fs.writeFile('1.txt', proposal + lineBreak, { 'flag': 'a' }, function (err) {
+        if (err) {
+            console.log('发送失败');
+        } else {
+            console.log('发送成功');
+        }
+    });
+
+    // 显示发送成功提示
+    alert('发送成功');
+}
+  
+
+
+  </script>
+</body>
+</html>
